@@ -26,4 +26,14 @@ class PokeApiService {
       throw Exception('Échec du chargement des détails du Pokémon');
     }
   }
+
+  Future<int> fetchTotalPokemonCount() async {
+    final response = await http.get(Uri.parse('$baseUrl/pokemon?limit=1'));
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return data['count'];
+    } else {
+      throw Exception('Échec du chargement du nombre total de Pokémon');
+    }
+  }
 }

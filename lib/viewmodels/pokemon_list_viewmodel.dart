@@ -16,7 +16,17 @@ class PokemonListViewModel extends ChangeNotifier {
   bool hasMore = true;
 
   PokemonListViewModel() {
+    fetchTotalCount();
     fetchPokemonList();
+  }
+
+  Future<void> fetchTotalCount() async {
+    try {
+      totalCount = await apiService.fetchTotalPokemonCount();
+      notifyListeners();
+    } catch (e) {
+      errorMessage = 'Erreur lors du chargement du nombre total de Pokémon.';
+    }
   }
 
   Future<void> fetchPokemonList() async {
@@ -30,7 +40,6 @@ class PokemonListViewModel extends ChangeNotifier {
           '${apiService.baseUrl}/pokemon?offset=$offset&limit=$limit'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        totalCount = data['count'];
         List<dynamic> results = data['results'];
 
         results.forEach((item) {

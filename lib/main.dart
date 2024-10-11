@@ -3,10 +3,9 @@ import 'package:provider/provider.dart';
 import 'viewmodels/pokemon_list_viewmodel.dart';
 import 'viewmodels/favorites_viewmodel.dart';
 import 'viewmodels/captured_viewmodel.dart';
+import 'viewmodels/total_count_viewmodel.dart';
 import 'views/pokemon_list_view.dart';
 import 'views/pokemon_detail_view.dart';
-import 'views/favorites_view.dart';
-import 'views/captured_view.dart';
 
 void main() {
   runApp(
@@ -20,6 +19,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => CapturedViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TotalCountViewModel(),
         ),
       ],
       child: MyApp(),
@@ -36,8 +38,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => PokemonListView(),
         '/details': (context) => PokemonDetailView(),
-        '/favorites': (context) => FavoritesView(),
-        '/captured': (context) => CapturedView(),
       },
     );
   }

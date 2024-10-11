@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../viewmodels/pokemon_list_viewmodel.dart';
 import '../viewmodels/favorites_viewmodel.dart';
 import '../viewmodels/captured_viewmodel.dart';
+import '../views/favorites_view.dart';
+import '../views/captured_view.dart';
 
 class PokemonListView extends StatefulWidget {
   @override
@@ -19,7 +21,8 @@ class _PokemonListViewState extends State<PokemonListView> {
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
-          _scrollController.position.maxScrollExtent - 200) {
+              _scrollController.position.maxScrollExtent - 200 &&
+          viewModel.hasMore) {
         viewModel.fetchPokemonList();
       }
     });
@@ -39,13 +42,23 @@ class _PokemonListViewState extends State<PokemonListView> {
           IconButton(
             icon: Icon(Icons.favorite),
             onPressed: () {
-              Navigator.pushNamed(context, '/favorites');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FavoritesView(),
+                ),
+              );
             },
           ),
           IconButton(
             icon: Icon(Icons.catching_pokemon),
             onPressed: () {
-              Navigator.pushNamed(context, '/captured');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CapturedView(),
+                ),
+              );
             },
           ),
         ],

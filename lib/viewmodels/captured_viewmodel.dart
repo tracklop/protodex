@@ -56,6 +56,6 @@ class CapturedViewModel extends ChangeNotifier {
   void _saveCaptured() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('capturedPokemonIds',
-        capturedPokemonIds.map((id) => id.toString()).toList());
+        capturedPokemonIds.map((e) => e.toString()).toList());
   }
 }

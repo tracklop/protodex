@@ -56,6 +56,6 @@ class FavoritesViewModel extends ChangeNotifier {
   void _saveFavorites() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('favoritePokemonIds',
-        favoritePokemonIds.map((id) => id.toString()).toList());
+        favoritePokemonIds.map((e) => e.toString()).toList());
   }
 }

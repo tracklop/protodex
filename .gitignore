@@ -1,0 +1,82 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+build/
+flutter_*.png
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-version
+pubspec.lock
+
+# VS Code related
+.vscode/
+.idea/
+*.iml
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Android Studio related
+/local.properties
+/.idea
+/.gradle
+/app/app.iml
+/android/*.iml
+/android/captures
+/android/gradlew
+/android/gradlew.bat
+/android/local.properties
+/android/.gradle
+/android/app/*.iml
+/android/app/build
+
+# iOS related
+ios/Flutter/.last_build_id
+ios/Pods/
+ios/Runner.xcworkspace/
+ios/build/
+ios/DerivedData/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/app.flx
+ios/Flutter/app.zip
+ios/ServiceDefinitions.json
+*.podspec
+
+# Web related
+web/.dart_tool/
+web/build/
+
+# Linux related
+linux/flutter/ephemeral/
+
+# MacOS related
+macos/Flutter/ephemeral/
+
+# Windows related
+windows/flutter/ephemeral/
+
+# Generated files
+*.log
+*.lock
+pubspec.lock
+
+# Others
+.DS_Store
+.env
+.env.*
+
+# Coverage
+coverage/
+
+# Packages
+packages/
+
+# Hidden files
+.*.swp

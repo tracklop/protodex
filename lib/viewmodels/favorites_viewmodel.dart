@@ -2,19 +2,37 @@ import 'package:flutter/material.dart';
 import '../models/pokemon.dart';
 
 class FavoritesViewModel extends ChangeNotifier {
-  List<Pokemon> favorites = [];
+  List<int> favoritePokemonIds = [];
 
   void addFavorite(Pokemon pokemon) {
-    favorites.add(pokemon);
-    notifyListeners();
+    if (!favoritePokemonIds.contains(pokemon.id)) {
+      favoritePokemonIds.add(pokemon.id);
+      notifyListeners();
+    }
   }
 
   void removeFavorite(Pokemon pokemon) {
-    favorites.removeWhere((item) => item.id == pokemon.id);
+    favoritePokemonIds.remove(pokemon.id);
     notifyListeners();
   }
 
   bool isFavorite(Pokemon pokemon) {
-    return favorites.any((item) => item.id == pokemon.id);
+    return favoritePokemonIds.contains(pokemon.id);
+  }
+
+  void addFavoriteById(int pokemonId) {
+    if (!favoritePokemonIds.contains(pokemonId)) {
+      favoritePokemonIds.add(pokemonId);
+      notifyListeners();
+    }
+  }
+
+  void removeFavoriteById(int pokemonId) {
+    favoritePokemonIds.remove(pokemonId);
+    notifyListeners();
+  }
+
+  bool isFavoriteById(int pokemonId) {
+    return favoritePokemonIds.contains(pokemonId);
   }
 }

@@ -1,27 +1,47 @@
 class Pokemon {
   final int id;
-  String name;
-  String customName;
+  final String name;
   final String imageUrl;
+  final List<String> types;
+  final List<String> abilities;
+  final Map<String, int> stats;
 
   Pokemon({
     required this.id,
     required this.name,
     required this.imageUrl,
-    this.customName = '',
+    required this.types,
+    required this.abilities,
+    required this.stats,
   });
 
   factory Pokemon.fromJson(Map<String, dynamic> json) {
-    String url = json['url'];
-    Uri uri = Uri.parse(url);
-    List<String> segments = uri.pathSegments;
-    int id = int.parse(segments[segments.length - 2]);
+    int id = json['id'];
+
+    String imageUrl = json['sprites']['front_default'] ?? '';
+
+    List<String> types = (json['types'] as List)
+        .map((typeInfo) => typeInfo['type']['name'] as String)
+        .toList();
+
+    List<String> abilities = (json['abilities'] as List)
+        .map((abilityInfo) => abilityInfo['ability']['name'] as String)
+        .toList();
+
+    Map<String, int> stats = {};
+    for (var statInfo in json['stats']) {
+      String statName = statInfo['stat']['name'];
+      int statValue = statInfo['base_stat'];
+      stats[statName] = statValue;
+    }
 
     return Pokemon(
       id: id,
       name: json['name'],
-      imageUrl:
-          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png',
+      imageUrl: imageUrl,
+      types: types,
+      abilities: abilities,
+      stats: stats,
     );
   }
 }

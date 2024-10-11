@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../viewmodels/favorites_viewmodel.dart';
+import '../viewmodels/captured_viewmodel.dart';
 import '../services/pokeapi_service.dart';
 import '../models/pokemon.dart';
 
-class FavoritesView extends StatelessWidget {
+class CapturedView extends StatelessWidget {
   final PokeApiService apiService = PokeApiService();
 
   @override
   Widget build(BuildContext context) {
-    final favoritesViewModel = Provider.of<FavoritesViewModel>(context);
+    final capturedViewModel = Provider.of<CapturedViewModel>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pokémon Favoris'),
+        title: Text('Pokémon Capturés'),
       ),
-      body: favoritesViewModel.favoritePokemonIds.isEmpty
-          ? Center(child: Text('Aucun Pokémon favori'))
+      body: capturedViewModel.capturedPokemonIds.isEmpty
+          ? Center(child: Text('Aucun Pokémon capturé'))
           : ListView.builder(
-              itemCount: favoritesViewModel.favoritePokemonIds.length,
+              itemCount: capturedViewModel.capturedPokemonIds.length,
               itemBuilder: (context, index) {
                 final int pokemonId =
-                    favoritesViewModel.favoritePokemonIds[index];
+                    capturedViewModel.capturedPokemonIds[index];
                 return FutureBuilder<Pokemon>(
                   future: apiService.fetchPokemonDetails(pokemonId),
                   builder: (context, snapshot) {

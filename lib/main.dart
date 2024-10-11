@@ -12,9 +12,15 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => PokemonListViewModel()),
-        ChangeNotifierProvider(create: (_) => FavoritesViewModel()),
-        ChangeNotifierProvider(create: (_) => CapturedViewModel()),
+        ChangeNotifierProvider(
+          create: (_) => PokemonListViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FavoritesViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CapturedViewModel(),
+        ),
       ],
       child: MyApp(),
     ),

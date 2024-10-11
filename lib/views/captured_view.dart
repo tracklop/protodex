@@ -8,6 +8,8 @@ import '../models/pokemon.dart';
 class CapturedView extends StatelessWidget {
   final PokeApiService apiService = PokeApiService();
 
+  CapturedView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final capturedViewModel = Provider.of<CapturedViewModel>(context);
@@ -20,10 +22,10 @@ class CapturedView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pokémon Capturés'),
+        title: const Text('Pokémon Capturés'),
       ),
       body: totalCount == 0
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
                 Padding(
@@ -31,11 +33,11 @@ class CapturedView extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Progression : ${progress.toStringAsFixed(1)}% (${capturedCount}/$totalCount)',
-                        style: TextStyle(
+                        'Progression : ${progress.toStringAsFixed(1)}% ($capturedCount/$totalCount)',
+                        style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       LinearProgressIndicator(
                         value: progress / 100,
                       ),
@@ -44,7 +46,7 @@ class CapturedView extends StatelessWidget {
                 ),
                 Expanded(
                   child: capturedViewModel.capturedPokemonIds.isEmpty
-                      ? Center(child: Text('Aucun Pokémon capturé'))
+                      ? const Center(child: Text('Aucun Pokémon capturé'))
                       : ListView.builder(
                           itemCount:
                               capturedViewModel.capturedPokemonIds.length,
@@ -56,11 +58,11 @@ class CapturedView extends StatelessWidget {
                               builder: (context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return ListTile(
+                                  return const ListTile(
                                     title: Text('Chargement...'),
                                   );
                                 } else if (snapshot.hasError) {
-                                  return ListTile(
+                                  return const ListTile(
                                     title: Text('Erreur lors du chargement'),
                                   );
                                 } else {

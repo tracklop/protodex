@@ -5,6 +5,8 @@ import '../viewmodels/favorites_viewmodel.dart';
 import '../viewmodels/captured_viewmodel.dart';
 
 class PokemonDetailView extends StatelessWidget {
+  const PokemonDetailView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final Pokemon pokemon =
@@ -23,26 +25,26 @@ class PokemonDetailView extends StatelessWidget {
         child: Column(
           children: [
             Image.network(pokemon.imageUrl),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               '#${pokemon.id} ${pokemon.name}',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text('Types: ${pokemon.types.join(', ')}'),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text('Capacités: ${pokemon.abilities.join(', ')}'),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'Statistiques:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             ...pokemon.stats.entries.map((entry) {
               return Text('${entry.key}: ${entry.value}');
             }).toList(),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             CheckboxListTile(
-              title: Text('Favori'),
+              title: const Text('Favori'),
               value: isFavorite,
               onChanged: (value) {
                 if (value == true) {
@@ -53,7 +55,7 @@ class PokemonDetailView extends StatelessWidget {
               },
             ),
             CheckboxListTile(
-              title: Text('Capturé'),
+              title: const Text('Capturé'),
               value: isCaptured,
               onChanged: (value) {
                 if (value == true) {

@@ -7,6 +7,8 @@ import '../models/pokemon.dart';
 class FavoritesView extends StatelessWidget {
   final PokeApiService apiService = PokeApiService();
 
+  FavoritesView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final favoritesViewModel = Provider.of<FavoritesViewModel>(context);
@@ -15,7 +17,7 @@ class FavoritesView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pokémon Favoris'),
+        title: const Text('Pokémon Favoris'),
       ),
       body: Column(
         children: [
@@ -23,12 +25,12 @@ class FavoritesView extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               'Total de Favoris : $favoritesCount',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
             child: favoritesViewModel.favoritePokemonIds.isEmpty
-                ? Center(child: Text('Aucun Pokémon favori'))
+                ? const Center(child: Text('Aucun Pokémon favori'))
                 : ListView.builder(
                     itemCount: favoritesViewModel.favoritePokemonIds.length,
                     itemBuilder: (context, index) {
@@ -39,11 +41,11 @@ class FavoritesView extends StatelessWidget {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return ListTile(
+                            return const ListTile(
                               title: Text('Chargement...'),
                             );
                           } else if (snapshot.hasError) {
-                            return ListTile(
+                            return const ListTile(
                               title: Text('Erreur lors du chargement'),
                             );
                           } else {

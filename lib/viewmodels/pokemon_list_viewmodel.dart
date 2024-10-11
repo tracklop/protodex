@@ -42,7 +42,7 @@ class PokemonListViewModel extends ChangeNotifier {
         final data = json.decode(response.body);
         List<dynamic> results = data['results'];
 
-        results.forEach((item) {
+        for (var item in results) {
           int id = extractIdFromUrl(item['url']);
           String name = item['name'];
           String imageUrl =
@@ -53,7 +53,7 @@ class PokemonListViewModel extends ChangeNotifier {
             name: name,
             imageUrl: imageUrl,
           ));
-        });
+        }
 
         offset += limit;
         if (pokemonList.length >= totalCount) {

@@ -7,6 +7,8 @@ import '../views/favorites_view.dart';
 import '../views/captured_view.dart';
 
 class PokemonListView extends StatefulWidget {
+  const PokemonListView({super.key});
+
   @override
   _PokemonListViewState createState() => _PokemonListViewState();
 }
@@ -40,7 +42,7 @@ class _PokemonListViewState extends State<PokemonListView> {
             'Pokédex (${viewModel.pokemonList.length}/${viewModel.totalCount})'),
         actions: [
           IconButton(
-            icon: Icon(Icons.favorite),
+            icon: const Icon(Icons.favorite),
             onPressed: () {
               Navigator.push(
                 context,
@@ -51,7 +53,7 @@ class _PokemonListViewState extends State<PokemonListView> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.catching_pokemon),
+            icon: const Icon(Icons.catching_pokemon),
             onPressed: () {
               Navigator.push(
                 context,
@@ -64,7 +66,7 @@ class _PokemonListViewState extends State<PokemonListView> {
         ],
       ),
       body: viewModel.isLoading && viewModel.pokemonList.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               controller: _scrollController,
               itemCount: viewModel.hasMore
@@ -72,7 +74,7 @@ class _PokemonListViewState extends State<PokemonListView> {
                   : viewModel.pokemonList.length,
               itemBuilder: (context, index) {
                 if (index == viewModel.pokemonList.length) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
                 final pokemonItem = viewModel.pokemonList[index];
                 bool isFavorite =

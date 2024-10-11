@@ -24,20 +24,22 @@ void main() {
           create: (_) => TotalCountViewModel(),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pokédex',
       initialRoute: '/',
       routes: {
-        '/': (context) => PokemonListView(),
-        '/details': (context) => PokemonDetailView(),
+        '/': (context) => const PokemonListView(),
+        '/details': (context) => const PokemonDetailView(),
       },
     );
   }

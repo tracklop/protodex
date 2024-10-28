@@ -48,11 +48,21 @@ class PokemonListViewModel extends ChangeNotifier {
           String imageUrl =
               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
 
-          pokemonList.add(PokemonListItem(
-            id: id,
-            name: name,
-            imageUrl: imageUrl,
-          ));
+          // Requête pour obtenir les détails du Pokémon, y compris ses types
+          final detailResponse = await http.get(Uri.parse('${apiService.baseUrl}/pokemon/$id'));
+          if (detailResponse.statusCode == 200) {
+            final detailData = json.decode(detailResponse.body);
+            List<String> types = (detailData['types'] as List)
+                .map((typeInfo) => typeInfo['type']['name'] as String)
+                .toList();
+
+            pokemonList.add(PokemonListItem(
+              id: id,
+              name: name,
+              imageUrl: imageUrl,
+              types: types, 
+            ));
+          }
         }
 
         offset += limit;

@@ -17,7 +17,7 @@ class PokemonDetailView extends StatelessWidget {
       case 'grass':
         return Colors.green;
       case 'electric':
-        return Colors.yellow;
+        return Colors.orange;
       case 'psychic':
         return Colors.purple;
       case 'ice':
@@ -38,7 +38,7 @@ class PokemonDetailView extends StatelessWidget {
         return Colors.blue;
       case 'ground':
         return Colors.brown;
-      case 'bug':
+        case 'bug':
         return Colors.lightGreen;
       default:
         return Colors.grey;

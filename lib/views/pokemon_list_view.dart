@@ -39,7 +39,7 @@ class _PokemonListViewState extends State<PokemonListView> {
       case 'grass':
         return Colors.green;
       case 'electric':
-        return Colors.yellow;
+        return Colors.orange;
       case 'psychic':
         return Colors.purple;
       case 'ice':
@@ -161,7 +161,7 @@ class _PokemonListViewState extends State<PokemonListView> {
                                 type.toUpperCase(),
                                 style: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 12,
+                                  fontSize: 10,
                                 ),
                               ),
                             );

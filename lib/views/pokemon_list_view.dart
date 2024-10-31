@@ -5,6 +5,7 @@ import '../viewmodels/favorites_viewmodel.dart';
 import '../viewmodels/captured_viewmodel.dart';
 import '../views/favorites_view.dart';
 import '../views/captured_view.dart';
+import '../utils/color_utils.dart';
 
 class PokemonListView extends StatefulWidget {
   const PokemonListView({super.key});
@@ -28,43 +29,6 @@ class _PokemonListViewState extends State<PokemonListView> {
         viewModel.fetchPokemonList();
       }
     });
-  }
-
-  Color getColorForType(String type) {
-    switch (type) {
-      case 'fire':
-        return Colors.red;
-      case 'water':
-        return Colors.blue;
-      case 'grass':
-        return Colors.green;
-      case 'electric':
-        return Colors.orange;
-      case 'psychic':
-        return Colors.purple;
-      case 'ice':
-        return Colors.lightBlue;
-      case 'dragon':
-        return Colors.indigo;
-      case 'dark':
-        return Colors.black;
-      case 'fairy':
-        return Colors.pink;
-      case 'steel':
-        return Colors.blueGrey;
-      case 'ghost':
-        return Colors.deepPurple;
-      case 'poison':
-        return Colors.purple;
-      case 'flying':
-        return Colors.blue;
-      case 'ground':
-        return Colors.brown;
-        case 'bug':
-        return Colors.lightGreen;
-      default:
-        return Colors.grey;
-    }
   }
 
   @override
@@ -119,16 +83,26 @@ class _PokemonListViewState extends State<PokemonListView> {
                 bool isCaptured =
                     capturedViewModel.isCapturedById(pokemonItem.id);
 
-                // Utilisez la couleur du premier type du Pokémon, sinon couleur par défaut
-                final backgroundColor = pokemonItem.types.isNotEmpty
-                    ? getColorForType(pokemonItem.types[0])
-                    : Colors.grey;
-
                 return Container(
-                  margin: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.all(5.0),
                   padding: const EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
-                    color: backgroundColor,
+                    gradient: pokemonItem.types.length > 1
+                        ? LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                                getColorForType(pokemonItem.types[0]),
+                                getColorForType(pokemonItem.types[1]),
+                              ],
+                            stops: [
+                                0.25,
+                                0.75
+                              ])
+                        : null,
+                    color: pokemonItem.types.length == 1
+                        ? getColorForType(pokemonItem.types[0])
+                        : null,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ListTile(
@@ -155,7 +129,8 @@ class _PokemonListViewState extends State<PokemonListView> {
                               decoration: BoxDecoration(
                                 color: getColorForType(type),
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.white, width: 1),
+                                border:
+                                    Border.all(color: Colors.white, width: 1),
                               ),
                               child: Text(
                                 type.toUpperCase(),
@@ -177,7 +152,8 @@ class _PokemonListViewState extends State<PokemonListView> {
                           value: isFavorite,
                           onChanged: (value) {
                             if (value == true) {
-                              favoritesViewModel.addFavoriteById(pokemonItem.id);
+                              favoritesViewModel
+                                  .addFavoriteById(pokemonItem.id);
                             } else {
                               favoritesViewModel
                                   .removeFavoriteById(pokemonItem.id);

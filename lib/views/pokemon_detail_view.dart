@@ -3,47 +3,10 @@ import 'package:provider/provider.dart';
 import '../models/pokemon.dart';
 import '../viewmodels/favorites_viewmodel.dart';
 import '../viewmodels/captured_viewmodel.dart';
+import '../utils/color_utils.dart';
 
 class PokemonDetailView extends StatelessWidget {
   const PokemonDetailView({super.key});
-
-  // Fonction pour obtenir la couleur en fonction du type de Pokémon
-  Color getColorForType(String type) {
-    switch (type) {
-      case 'fire':
-        return Colors.red;
-      case 'water':
-        return Colors.blue;
-      case 'grass':
-        return Colors.green;
-      case 'electric':
-        return Colors.orange;
-      case 'psychic':
-        return Colors.purple;
-      case 'ice':
-        return Colors.lightBlue;
-      case 'dragon':
-        return Colors.indigo;
-      case 'dark':
-        return Colors.black;
-      case 'fairy':
-        return Colors.pink;
-      case 'steel':
-        return Colors.blueGrey;
-      case 'ghost':
-        return Colors.deepPurple;
-      case 'poison':
-        return Colors.purple;
-      case 'flying':
-        return Colors.blue;
-      case 'ground':
-        return Colors.brown;
-        case 'bug':
-        return Colors.lightGreen;
-      default:
-        return Colors.grey;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

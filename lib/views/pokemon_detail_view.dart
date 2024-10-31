@@ -99,7 +99,7 @@ class PokemonDetailView extends StatelessWidget {
                 IconButton(
                   icon: Icon(
                     isFavorite ? Icons.star : Icons.star_border,
-                    color: isFavorite ? Colors.yellow : Colors.white,
+                    color: Colors.white,
                   ),
                   onPressed: () {
                     if (isFavorite) {

@@ -148,27 +148,42 @@ class _PokemonListViewState extends State<PokemonListView> {
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Checkbox(
-                          value: isFavorite,
-                          onChanged: (value) {
-                            if (value == true) {
-                              favoritesViewModel
-                                  .addFavoriteById(pokemonItem.id);
-                            } else {
-                              favoritesViewModel
-                                  .removeFavoriteById(pokemonItem.id);
-                            }
+                        // Icône pour Favori
+                        IconButton(
+                          icon: Icon(
+                            isFavorite ? Icons.star : Icons.star_border,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (isFavorite) {
+                                favoritesViewModel
+                                    .removeFavoriteById(pokemonItem.id);
+                              } else {
+                                favoritesViewModel
+                                    .addFavoriteById(pokemonItem.id);
+                              }
+                            });
                           },
                         ),
-                        Checkbox(
-                          value: isCaptured,
-                          onChanged: (value) {
-                            if (value == true) {
-                              capturedViewModel.addCapturedById(pokemonItem.id);
-                            } else {
-                              capturedViewModel
-                                  .removeCapturedById(pokemonItem.id);
-                            }
+                        // Icône pour Capturé
+                        IconButton(
+                          icon: Icon(
+                            isCaptured
+                                ? Icons.catching_pokemon
+                                : Icons.catching_pokemon_outlined,
+                            color: isCaptured ? Colors.red : Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (isCaptured) {
+                                capturedViewModel
+                                    .removeCapturedById(pokemonItem.id);
+                              } else {
+                                capturedViewModel
+                                    .addCapturedById(pokemonItem.id);
+                              }
+                            });
                           },
                         ),
                       ],

@@ -92,37 +92,41 @@ class PokemonDetailView extends StatelessWidget {
               );
             }).toList(),
             const SizedBox(height: 16),
-            CheckboxListTile(
-              title: const Text(
-                'Favori',
-                style: TextStyle(color: Colors.white),
-              ),
-              value: isFavorite,
-              onChanged: (value) {
-                if (value == true) {
-                  favoritesViewModel.addFavorite(pokemon);
-                } else {
-                  favoritesViewModel.removeFavorite(pokemon);
-                }
-              },
-              activeColor: Colors.white,
-              checkColor: Colors.black,
-            ),
-            CheckboxListTile(
-              title: const Text(
-                'Capturé',
-                style: TextStyle(color: Colors.white),
-              ),
-              value: isCaptured,
-              onChanged: (value) {
-                if (value == true) {
-                  capturedViewModel.addCaptured(pokemon);
-                } else {
-                  capturedViewModel.removeCaptured(pokemon);
-                }
-              },
-              activeColor: Colors.white,
-              checkColor: Colors.black,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Icône pour Favori
+                IconButton(
+                  icon: Icon(
+                    isFavorite ? Icons.star : Icons.star_border,
+                    color: isFavorite ? Colors.yellow : Colors.white,
+                  ),
+                  onPressed: () {
+                    if (isFavorite) {
+                      favoritesViewModel.removeFavorite(pokemon);
+                    } else {
+                      favoritesViewModel.addFavorite(pokemon);
+                    }
+                  },
+                ),
+                const SizedBox(width: 16),
+                // Icône pour Capturé
+                IconButton(
+                  icon: Icon(
+                    isCaptured
+                        ? Icons.catching_pokemon
+                        : Icons.catching_pokemon_outlined,
+                    color: isCaptured ? Colors.red : Colors.white,
+                  ),
+                  onPressed: () {
+                    if (isCaptured) {
+                      capturedViewModel.removeCaptured(pokemon);
+                    } else {
+                      capturedViewModel.addCaptured(pokemon);
+                    }
+                  },
+                ),
+              ],
             ),
           ],
         ),

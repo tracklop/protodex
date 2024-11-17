@@ -95,7 +95,7 @@ class _PokemonListViewState extends State<PokemonListView> {
                                 getColorForType(pokemonItem.types[0]),
                                 getColorForType(pokemonItem.types[1]),
                               ],
-                            stops: [
+                            stops: const [
                                 0.25,
                                 0.75
                               ])
@@ -136,7 +136,7 @@ class _PokemonListViewState extends State<PokemonListView> {
                                 type.toUpperCase(),
                                 style: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 10,
+                                  fontSize: 8,
                                 ),
                               ),
                             );

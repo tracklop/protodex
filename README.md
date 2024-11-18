@@ -27,7 +27,7 @@ ProtoDex est une application mobile développée en Flutter qui sert de prototyp
 
 ### Prérequis
 
-- Flutter SDK installé sur votre machine. (Version recommandée : **3.19**)
+- Flutter SDK installé sur votre machine. (Version recommandée : **3.16**)
 - Un simulateur ou un appareil physique pour tester l'application.
 
 ### Étapes d'Installation
